@@ -4,7 +4,7 @@ window.onerror = function () {
 };
 
 
-var url = 'http://api.icndb.com/jokes/random';
+var url = 'https://api.icndb.com/jokes/random';
 
 var button = document.getElementById('get-joke');
 button.addEventListener('click', function(){
@@ -18,7 +18,7 @@ function getJoke() {
 
   xhr.open('GET', url, false);  //czemu tutaj zadziałało dopiero po wpisaniu false i dodaniu https do adresu???
 
-/* ten kod do końca nie działa - status zmienia się i nie odpowiada końcowemu
+/* ale kod do końca nie działa - status zmienia się i nie odpowiada końcowemu
   console.log(xhr.status);
   if(xhr.status == 200 && xhr.status < 300) {
     console.log("ok");
@@ -29,22 +29,25 @@ function getJoke() {
   xhr.addEventListener('load', function(){
     var response = JSON.parse(xhr.response);
 
-//    console.log(xhr.response);
+    console.log(xhr.response);
+    console.log(xhr.status);
 
     paragraph.innerHTML = response.value.joke;
 
-/* pytanie dlaczego nie mogę oprzeć się na responsie?
+/* pytanie dlaczego nie mogę oprzeć się na responsie? czy po zmianie adresu w ogóle tutaj js nie dochodzi?
+
     if(xhr.response == null) {
       console.log("BŁAD");
     } else {
       console.log("SUKCES");
     }
+
 */
   });
 
   xhr.send();
 
-//  console.log(xhr.status);
+  console.log(xhr.status);
 
 }
 
